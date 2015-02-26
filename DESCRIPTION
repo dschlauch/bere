@@ -1,0 +1,11 @@
+Package: bere
+Type: Package
+Title: Generates a bipartite network from expression and motif data
+Version: 1.0
+Date: 2015-02-25
+Author: Daniel Schlauch
+Maintainer: Daniel Schlauch <dschlauch@fas.harvard.edu>
+Description: Takes a set of expression data and a set of sequence motifs.  Generates a complete bi-partite network with weighted edges describing the regulatory pathways between transcription factors and genes.
+License: GPL (>= 2)
+Imports: Rcpp (>= 0.11.3)
+LinkingTo: Rcpp
