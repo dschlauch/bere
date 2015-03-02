@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // rcpp_ccorr
 NumericMatrix rcpp_ccorr(NumericMatrix x);
-RcppExport SEXP bere_rcpp_ccorr(SEXP xSEXP) {
+RcppExport SEXP bereR_rcpp_ccorr(SEXP xSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {

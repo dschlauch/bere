@@ -8,11 +8,10 @@
 #' @param cpp logical use C++ for maximum speed, set to false if unable to run.
 #' @keywords keywords
 #' @export
-#' @return An object of class "bere"
+#' @return TBD, An object of class "bere" (currently matrix or data.frame) 
 #' @examples
 #' data(yeast)
-
-regpredict <- function(motif.data, 
+bere <- function(motif.data, 
                       expr.data,
                       verbose=T,
                       randomize="none",
@@ -64,10 +63,12 @@ regpredict <- function(motif.data,
     if(cpp){
       # C++ implementation
       gene.coreg <- rcpp_ccorr(t(apply(expr.data, 1, function(x)(x-mean(x))/(sd(x)))))
+      rownames(gene.coreg)<- rownames(expr.data)
+      colnames(gene.coreg)<- rownames(expr.data)
       
     } else {
       # Standard r correlation calculation
-      gene.coreg <- cor(t(expr.data), method="pearson", use="pairwise.complete.obs")      
+      gene.coreg <- cor(t(expr.data), method="pearson", use="pairwise.complete.obs")
     }
   }
   
@@ -90,19 +91,19 @@ regpredict <- function(motif.data,
   }
   
   # store initial motif network (alphabetized for rows and columns)
-#   starting.motifs <- regulatory.network
+  #   starting.motifs <- regulatory.network
   
 
   if(verbose)
     print('Main calculation')
   ########################################
 
-strt<-Sys.time()
+  strt<-Sys.time()
   correlation.dif <- sweep(regulatory.network,1,rowSums(regulatory.network),`/`)%*%gene.coreg-sweep(1-regulatory.network,1,rowSums(1-regulatory.network),`/`)%*%gene.coreg
   result <- sweep(correlation.dif, 2, apply(correlation.dif, 2, sd),'/')
-#   regulatory.network <- ifelse(res>quantile(res,1-mean(regulatory.network)),1,0)
-
-print(Sys.time()-strt)
+  #   regulatory.network <- ifelse(res>quantile(res,1-mean(regulatory.network)),1,0)
+  
+  print(Sys.time()-strt)
   ########################################
   
   return(result)

@@ -12,8 +12,8 @@ NumericMatrix rcpp_ccorr(NumericMatrix x) {
       for (int k = 0; k < ncol; k++){
         sumproduct+=x(i,k)*x(j,k);
       }
-      resultMatrix(i,j) = sumproduct/(nrow-1);
-      resultMatrix(j,i) = sumproduct/(nrow-1);
+      resultMatrix(i,j) = sumproduct/(ncol-1);
+      resultMatrix(j,i) = sumproduct/(ncol-1);
     }
   }
   return resultMatrix;

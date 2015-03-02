@@ -1,7 +1,7 @@
-Package: bere
+Package: bereR
 Type: Package
 Title: Generates a bipartite network from expression and motif data
-Version: 1.0
+Version: 0.1
 Date: 2015-02-25
 Author: Daniel Schlauch
 Maintainer: Daniel Schlauch <dschlauch@fas.harvard.edu>
